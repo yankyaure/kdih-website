@@ -1,0 +1,270 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
+export default function Home() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+
+  const handleScroll = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.name && formData.email && formData.message) {
+      alert("Message sent! We'll be in touch soon.");
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      alert("Please fill in all fields.");
+    }
+  };
+
+  return (
+    <div className="p-4 space-y-8 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+      {/* Header */}
+      <header className="text-center space-y-4 py-8">
+        <h1 className="text-5xl font-bold text-gray-800">Katsina Digital Innovation Hub</h1>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto">A Platform for Technology, Talent, and Transformation</p>
+        <p className="text-lg text-gray-500">Empowering innovation through tech, skills, and community across Northern Nigeria</p>
+        <nav className="flex flex-wrap justify-center gap-6 mt-6">
+          {['Home', 'About', 'Services', 'Programs', 'Impact', 'Contact'].map(page => (
+            <button 
+              key={page} 
+              onClick={() => handleScroll(page.toLowerCase())}
+              className="text-blue-600 hover:text-blue-800 font-medium hover:underline cursor-pointer bg-transparent border-none px-3 py-1 rounded transition-all"
+            >
+              {page}
+            </button>
+          ))}
+        </nav>
+      </header>
+
+      {/* About */}
+      <section id="about" className="space-y-6 bg-white rounded-xl shadow-lg p-8">
+        <h2 className="text-3xl font-bold text-gray-800">About KDIH</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <p className="text-gray-700 leading-relaxed">
+              Katsina Digital Innovation Hub (KDIH) is a pioneering technology and innovation center strategically located in Katsina City, Nigeria. We are the first tech innovation hub of its kind in Katsina State, designed to bridge the digital divide in Northern Nigeria.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Our mission is to create a dynamic ecosystem where technology, talent, and opportunity intersect, supporting aspiring entrepreneurs, startups, freelancers, and job seekers with access to digital tools, skills training, workspace, mentorship, and business development support.
+            </p>
+          </div>
+          <div className="space-y-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-blue-800 mb-2">Our Vision</h3>
+              <p className="text-sm text-blue-700">To become the leading digital innovation and entrepreneurship hub in Northern Nigeria by 2030, empowering 10,000 youth and launching 100 sustainable tech-enabled businesses.</p>
+            </div>
+            <div className="bg-green-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-green-800 mb-2">Our Impact Goals</h3>
+              <p className="text-sm text-green-700">Create over 1,000 direct and indirect jobs by 2030 while supporting 50+ startups by year 3.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section id="services" className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">Our Services</h2>
+          <p className="text-gray-600">Comprehensive solutions for digital transformation and entrepreneurship development</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            { 
+              title: "Co-Working Spaces", 
+              desc: "Affordable and flexible office solutions with high-speed internet, power backup, and mentorship support. Starting from ₦5,000/month.",
+              icon: "🏢"
+            },
+            { 
+              title: "Digital Skills Training", 
+              desc: "Hands-on training in coding, UI/UX design, data science, AI, cybersecurity, and digital marketing. Courses range from ₦10,000 - ₦50,000.",
+              icon: "💻"
+            },
+            { 
+              title: "Business Incubation", 
+              desc: "3-6 month support programs guiding startups from ideation to launch, including mentorship and access to funding opportunities.",
+              icon: "🚀"
+            },
+            { 
+              title: "ICT Consulting", 
+              desc: "Professional consulting services for digital transformation, smart agriculture solutions, and technology integration.",
+              icon: "🔧"
+            },
+            { 
+              title: "Event Hosting", 
+              desc: "Modern facilities for tech meetups, hackathons, training workshops, and innovation challenges.",
+              icon: "🎯"
+            },
+            { 
+              title: "Business Support Services", 
+              desc: "Access to computers, printing, business registration assistance, and professional advisory services.",
+              icon: "📋"
+            }
+          ].map((service, idx) => (
+            <Card key={idx} className="shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white">
+              <CardContent className="p-6 text-center">
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">{service.title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{service.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Programs */}
+      <section id="programs" className="space-y-6 bg-white rounded-xl shadow-lg p-8">
+        <h2 className="text-3xl font-bold text-gray-800 text-center">Training Programs</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg">
+            <h3 className="text-xl font-semibold text-purple-800 mb-3">Digital Literacy</h3>
+            <p className="text-purple-700 text-sm mb-4">Foundational digital skills for beginners, including computer basics, internet navigation, and digital communication.</p>
+            <div className="text-purple-600 font-medium">₦10,000 - ₦25,000</div>
+          </div>
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">Advanced Tech Skills</h3>
+            <p className="text-blue-700 text-sm mb-4">Software development, data analysis, AI, cybersecurity, and emerging technologies with globally recognized certifications.</p>
+            <div className="text-blue-600 font-medium">₦30,000 - ₦50,000</div>
+          </div>
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
+            <h3 className="text-xl font-semibold text-green-800 mb-3">Entrepreneurship</h3>
+            <p className="text-green-700 text-sm mb-4">Business development, startup incubation, and soft skills workshops to build successful tech-enabled businesses.</p>
+            <div className="text-green-600 font-medium">₦15,000 - ₦35,000</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact */}
+      <section id="impact" className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">Our Impact</h2>
+          <p className="text-gray-600">Building the future of Northern Nigeria through technology and innovation</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="text-center bg-white p-6 rounded-xl shadow-lg">
+            <div className="text-3xl font-bold text-blue-600 mb-2">2,000+</div>
+            <div className="text-sm text-gray-600">Individuals to be trained in Year 1</div>
+          </div>
+          <div className="text-center bg-white p-6 rounded-xl shadow-lg">
+            <div className="text-3xl font-bold text-green-600 mb-2">500+</div>
+            <div className="text-sm text-gray-600">Jobs to be created</div>
+          </div>
+          <div className="text-center bg-white p-6 rounded-xl shadow-lg">
+            <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
+            <div className="text-sm text-gray-600">Startups to support by Year 3</div>
+          </div>
+          <div className="text-center bg-white p-6 rounded-xl shadow-lg">
+            <div className="text-3xl font-bold text-orange-600 mb-2">1st</div>
+            <div className="text-sm text-gray-600">Innovation Hub in Katsina State</div>
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Success Stories</h3>
+          <div className="space-y-4">
+            <blockquote className="border-l-4 border-blue-500 pl-6 text-gray-600">
+              "KDIH's comprehensive training program equipped me with the skills needed to launch my tech startup. The mentorship and incubation support were invaluable."
+              <footer className="mt-2 text-sm font-medium text-gray-800">— Fatima Abdullahi, Tech Entrepreneur</footer>
+            </blockquote>
+            <blockquote className="border-l-4 border-green-500 pl-6 text-gray-600">
+              "The co-working space at KDIH provided the perfect environment for our team to develop our mobile app. The community here is incredibly supportive."
+              <footer className="mt-2 text-sm font-medium text-gray-800">— Ahmad Sani, Software Developer</footer>
+            </blockquote>
+            <blockquote className="border-l-4 border-purple-500 pl-6 text-gray-600">
+              "Through KDIH's digital marketing training, I was able to grow my small business online and reach customers across Nigeria."
+              <footer className="mt-2 text-sm font-medium text-gray-800">— Aisha Muhammad, Digital Marketer</footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="bg-white rounded-xl shadow-lg p-8">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">Contact Us</h2>
+          <p className="text-gray-600">Ready to join the digital transformation? Get in touch!</p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="text-blue-600 text-xl">📧</div>
+                <div>
+                  <div className="font-semibold text-gray-800">Email</div>
+                  <div className="text-gray-600">mbrkjebreel@yahoo.com</div>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="text-green-600 text-xl">📱</div>
+                <div>
+                  <div className="font-semibold text-gray-800">Phone</div>
+                  <div className="text-gray-600">+2348067933935</div>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="text-purple-600 text-xl">📍</div>
+                <div>
+                  <div className="font-semibold text-gray-800">Address</div>
+                  <div className="text-gray-600">No.6 Danmarna Petroleum Plaza, Kofar Kaura, Katsina</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg">
+              <h3 className="font-semibold text-gray-800 mb-2">Business Hours</h3>
+              <div className="text-sm text-gray-600 space-y-1">
+                <div>Monday - Friday: 8:00 AM - 6:00 PM</div>
+                <div>Saturday: 9:00 AM - 4:00 PM</div>
+                <div>Sunday: Closed</div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+            <textarea
+              placeholder="Your Message"
+              className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              rows={5}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            />
+            <Button onClick={handleSubmit} className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-300">
+              Send Message
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center py-8 border-t border-gray-200 bg-white rounded-xl">
+        <div className="space-y-4">
+          <div className="text-2xl font-bold text-gray-800">Katsina Digital Innovation Hub</div>
+          <div className="text-gray-600">A Platform for Technology, Talent, and Transformation</div>
+          <div className="text-sm text-gray-500">
+            © 2024 Katsina Digital Innovation Hub. All rights reserved.
+          </div>
+          <div className="text-xs text-gray-400">
+            Supported by Tony Elumelu Foundation | Registered with CAC Nigeria
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
